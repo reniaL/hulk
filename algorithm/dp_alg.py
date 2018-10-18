@@ -64,6 +64,20 @@ def run_points(length):
     print result[-1]
 
 
+def run_brick_stack(height):
+    """
+    用砖头砌墙，有几种特定高度的砖头，能否砌出高度为 height 的墙
+    """
+    result = [True]
+    bricks = [7, 11]
+    for i in range(1, height + 1):
+        cur_result = False
+        for brick in bricks:
+            if i - brick >= 0 and result[i-brick]:
+                cur_result = True
+        result.append(cur_result)
+    print result[-1]
+
 def run_sum_path(tree):
     """
     树的最佳求和路径
@@ -115,15 +129,17 @@ if __name__ == '__main__':
     # run_coins(14)
     # run_points(20)
 
-    tree = [
-        [1],
-        [3, 5],
-        [8, 2, 9],
-        [7, 4, 3, 1],
-        [2, 4, 8, 5, 6],
-        [3, 7, 8, 6, 1, 2],
-        [8, 6, 5, 9, 1, 2, 6],
-        [7, 1, 4, 2, 9, 5, 3, 8],
-        [6, 4, 1, 9, 3, 5, 2, 7, 8]
-    ]
-    run_sum_path(tree)
+    run_brick_stack(29)
+
+    # tree = [
+    #     [1],
+    #     [3, 5],
+    #     [8, 2, 9],
+    #     [7, 4, 3, 1],
+    #     [2, 4, 8, 5, 6],
+    #     [3, 7, 8, 6, 1, 2],
+    #     [8, 6, 5, 9, 1, 2, 6],
+    #     [7, 1, 4, 2, 9, 5, 3, 8],
+    #     [6, 4, 1, 9, 3, 5, 2, 7, 8]
+    # ]
+    # run_sum_path(tree)
