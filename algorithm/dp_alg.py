@@ -124,12 +124,22 @@ def run_sum_path(tree):
     print result_path
 
 
+def climbing_stairs(steps):
+    """
+    有 steps 级楼梯，每次可以爬1级或两级，共有多少种方法
+    """
+    result = [0, 1, 2]
+    for i in range(3, steps+1):
+        result.append(result[i-1] + result[i-2])
+    print result
+
+
 if __name__ == '__main__':
     # run_coins_simple(14)
     # run_coins(14)
     # run_points(20)
 
-    run_brick_stack(29)
+    climbing_stairs(10)
 
     # tree = [
     #     [1],
