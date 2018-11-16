@@ -1,4 +1,5 @@
 # coding=utf-8
+from datetime import datetime
 
 
 def is_valid(matrix):
@@ -18,7 +19,7 @@ def is_valid(matrix):
 
 def solve1(i, n, matrix):
     """
-    simple solution to n queens, by backtracking
+    simple solution to n-queens, by backtracking
     :param i: start from this row
     :param n: total row count
     :param matrix: start from this placement, every element means place at row i, column matrix[i]
@@ -39,5 +40,24 @@ def solve1(i, n, matrix):
     return False
 
 
+def solve2(i, n, matrix):
+    """
+    print all solutions to n-queens
+    :param i: start from this row
+    :param n: total row count
+    :param matrix: start from this placement, every element means place at row i, column matrix[i]
+    """
+    for j in range(n):
+        matrix.append(j)
+        if is_valid(matrix):
+            if i+1 == n:
+                print "result:", matrix
+            else:
+                solve2(i + 1, n, matrix)
+        matrix.pop()
+
+
 if __name__ == '__main__':
-    print solve1(0, 5, [])
+    start = datetime.now()
+    solve2(0, 8, [])
+    print "time: ", (datetime.now() - start).microseconds
