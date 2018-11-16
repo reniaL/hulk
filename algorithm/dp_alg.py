@@ -10,7 +10,7 @@ def run_coins_simple(target):
 
     for i in range(1, target + 1):
         temp = []
-        for coin in [1, 3, 5]:
+        for coin in [1, 3, 5, 7]:
             if i - coin >= 0:
                 temp.append(result_count[i - coin] + 1)
 
@@ -29,7 +29,7 @@ def run_coins(target):
     for i in range(1, target + 1):
         chosen_coin = 100
         temp_count = 100
-        for coin in [1, 3, 5]:
+        for coin in [1, 3, 5, 7]:
             if i - coin >= 0 and (result_count[i - coin] + 1) < temp_count:
                 temp_count = result_count[i - coin] + 1
                 chosen_coin = coin
@@ -126,7 +126,7 @@ def run_sum_path(tree):
 
 def climbing_stairs(steps):
     """
-    有 steps 级楼梯，每次可以爬1级或两级，共有多少种方法
+    有 steps 级楼梯，每次可以爬1级或2级，共有多少种方法
     """
     result = [0, 1, 2]
     for i in range(3, steps+1):
@@ -135,11 +135,11 @@ def climbing_stairs(steps):
 
 
 if __name__ == '__main__':
-    # run_coins_simple(14)
+    run_coins_simple(24)
     # run_coins(14)
     # run_points(20)
 
-    climbing_stairs(10)
+    # climbing_stairs(10)
 
     # tree = [
     #     [1],
