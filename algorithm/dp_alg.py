@@ -73,10 +73,11 @@ def run_brick_stack(height):
     for i in range(1, height + 1):
         cur_result = False
         for brick in bricks:
-            if i - brick >= 0 and result[i-brick]:
+            if i - brick >= 0 and result[i - brick]:
                 cur_result = True
         result.append(cur_result)
     print result[-1]
+
 
 def run_sum_path(tree):
     """
@@ -92,10 +93,10 @@ def run_sum_path(tree):
         result_nodes.append([])
         result_node_index.append([])
         for j in range(0, len(tree[i])):
-            node_sum_left = 0 if (i == 0 or j == 0) else result_nodes[i-1][j-1]  # 当前节点的左上节点
-            node_sum_right = 0 if (i == 0 or j == len(tree[i]) - 1) else result_nodes[i-1][j]  # 当前节点的右上节点
+            node_sum_left = 0 if (i == 0 or j == 0) else result_nodes[i - 1][j - 1]  # 当前节点的左上节点
+            node_sum_right = 0 if (i == 0 or j == len(tree[i]) - 1) else result_nodes[i - 1][j]  # 当前节点的右上节点
             result_nodes[i].append(max(node_sum_left, node_sum_right) + tree[i][j])
-            result_node_index[i].append(j if node_sum_left < node_sum_right else j-1)
+            result_node_index[i].append(j if node_sum_left < node_sum_right else j - 1)
 
         layer_max = 0
         for k in range(0, len(result_nodes[i])):
@@ -117,7 +118,7 @@ def run_sum_path(tree):
     j = last_node_index
     result_path = [tree[i][j]]
     while i > 0:
-        i = i-1
+        i = i - 1
         j = result_node_index[i][j]
         result_path.append(tree[i][j])
 
@@ -129,13 +130,28 @@ def climbing_stairs(steps):
     有 steps 级楼梯，每次可以爬1级或2级，共有多少种方法
     """
     result = [0, 1, 2]
-    for i in range(3, steps+1):
-        result.append(result[i-1] + result[i-2])
+    for i in range(3, steps + 1):
+        result.append(result[i - 1] + result[i - 2])
     print result
 
 
+def max_product(num):
+    """
+    给定一个正整数，将其拆分为至少2个正整数的和，且要求这些正整数的乘积最大
+    """
+    results = [1, 1]
+    for i in range(3, num + 1):
+        cur_results = []
+        for j in range(1, i):
+            cur_results.append(max(j*(i-j), j*results[i-j-1]))
+        results.append(max(cur_results))
+    print range(1, num+1)
+    print results
+
+
 if __name__ == '__main__':
-    run_coins_simple(24)
+    max_product(15)
+    # run_coins_simple(24)
     # run_coins(14)
     # run_points(20)
 
