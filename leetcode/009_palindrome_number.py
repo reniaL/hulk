@@ -13,11 +13,7 @@ class Solution(object):
             return True
 
         s = str(x)
-        size = len(s)
-        for i in range(0, size/2):
-            if s[i] != s[size-i-1]:
-                return False
-        return True
+        return s[::-1] == s
 
 
 if __name__ == '__main__':
