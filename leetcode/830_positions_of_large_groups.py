@@ -19,7 +19,7 @@ class Solution(object):
         for i in range(1, len(S)):
             if S[i] != last:
                 if i - start >= 3:
-                    result.append([start, i-1])
+                    result.append([start, i - 1])
 
                 start = i
                 last = S[i]
